@@ -11,7 +11,7 @@ import QuartzCore
 
 extension UIView {
     
-   public func isShowingOnKeyWindow() -> Bool {
+    func isShowingOnKeyWindow() -> Bool {
         let keyWindow: UIWindow? = UIApplication.shared.keyWindow
         // 把这个view在它的父控件中的frame(即默认的frame)转换成在window的frame
         let convertFrame: CGRect? = superview?.convert(frame, to: keyWindow)
@@ -23,7 +23,7 @@ extension UIView {
         return isShowingOnWindow!
     }
     
-   public func setRoundedCorners(corners: UIRectCorner,radius: CGFloat) {
+    func setRoundedCorners(corners: UIRectCorner,radius: CGFloat) {
         let rect = self.bounds
         let maskPath = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let maskLayer = CAShapeLayer()
@@ -37,7 +37,7 @@ extension UIView {
 // MARK: - 获取view所在的控制器
 extension UIView {
     
-   public func getVC() -> UIViewController? {
+    func getVC() -> UIViewController? {
         
         let n = next
         
@@ -59,17 +59,17 @@ extension UIView {
 // MARK: - 自适应AutoLayout
 extension UIView {
     
-    public func yl_refreshFrame() {
+    func yl_refreshFrame() {
         setNeedsLayout()
         layoutIfNeeded()
     }
     
-    public func yl_autoH() {
+    func yl_autoH() {
         setContentHuggingPriority(UILayoutPriority.required, for: NSLayoutConstraint.Axis.vertical)
         setContentCompressionResistancePriority(UILayoutPriority.required, for: NSLayoutConstraint.Axis.vertical)
     }
     
-   public func yl_autoW() {
+    func yl_autoW() {
         setContentHuggingPriority(UILayoutPriority.required, for: NSLayoutConstraint.Axis.horizontal)
         setContentCompressionResistancePriority(UILayoutPriority.required, for: NSLayoutConstraint.Axis.horizontal)
     }
@@ -254,7 +254,7 @@ extension UIView {
 extension UIView {
     
     //获取view所在VC
-     public func firstViewController() -> UIViewController? {
+    func firstViewController() -> UIViewController? {
         
         for view in sequence(first: self.superview, next: { $0?.superview }) {
             if let responder = view?.next {
@@ -336,7 +336,7 @@ extension UIView {
             self.superview = view
         }
         
-         public func setup(style: UIBlurEffect.Style, alpha: CGFloat) -> Self {
+        func setup(style: UIBlurEffect.Style, alpha: CGFloat) -> Self {
             self.editing = true
             
             self.style = style
@@ -347,7 +347,7 @@ extension UIView {
             return self
         }
         
-         public func enable(isHidden: Bool = false) {
+        func enable(isHidden: Bool = false) {
             if blur == nil {
                 applyBlurEffect()
             }
@@ -438,7 +438,7 @@ extension UIView {
     }
     
     /// 点击事件回调闭包
-     public func gm_addTapClosure(_ closure: @escaping ((UIView) -> ())) {
+    func gm_addTapClosure(_ closure: @escaping ((UIView) -> ())) {
         let blockContainer = GMClosureContainer(gm_tapClosure: closure)
         self.gm_tapContainer = blockContainer
         self.isUserInteractionEnabled = true
@@ -452,7 +452,7 @@ extension UIView {
     }
     
     /// 添加手势点击事件
-     public func gm_addTarget(_ target: Any?, action: Selector?) {
+    func gm_addTarget(_ target: Any?, action: Selector?) {
         
         self.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: target, action: action)
@@ -465,7 +465,7 @@ extension UIView {
 extension UIView {
     
     /*** 设置uiview 的任意圆角 **/
-     public func setCornersWithView(_ view:UIView,corner:CGFloat) {
+    func setCornersWithView(_ view:UIView,corner:CGFloat) {
         let maskPath = UIBezierPath.init(roundedRect: view.bounds,
                                          byRoundingCorners: [UIRectCorner.bottomLeft, UIRectCorner.topRight],
                                          cornerRadii: CGSize(width: corner, height: corner))
@@ -475,7 +475,7 @@ extension UIView {
         view.layer.mask = maskLayer
     }
     
-     public func setBorderWithView(_ view:UIView,top:Bool,left:Bool,bottom:Bool,right:Bool,width:CGFloat,color:UIColor) {
+    func setBorderWithView(_ view:UIView,top:Bool,left:Bool,bottom:Bool,right:Bool,width:CGFloat,color:UIColor) {
         
         if top  {
             let layer = CALayer()
@@ -511,7 +511,7 @@ extension UIView {
     /// - Parameters:
     ///   - corners: 需要实现为圆角的角，可传入多个
     ///   - radii: 圆角半径
-     public func corner(byRoundingCorners corners: UIRectCorner, radii: CGFloat) {
+    func corner(byRoundingCorners corners: UIRectCorner, radii: CGFloat) {
         let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radii, height: radii))
         let maskLayer = CAShapeLayer()
         maskLayer.frame = self.bounds

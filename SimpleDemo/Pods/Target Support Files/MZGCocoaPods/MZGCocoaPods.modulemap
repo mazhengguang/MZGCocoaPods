@@ -1,0 +1,6 @@
+framework module MZGCocoaPods {
+  umbrella header "MZGCocoaPods-umbrella.h"
+
+  export *
+  module * { export * }
+}
